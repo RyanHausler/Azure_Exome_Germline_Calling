@@ -32,6 +32,20 @@ version 1.0
 workflow HaplotypeCallerGvcf_GATK4 {
 
   input {
+    File input_bam
+    File ref_dict
+    File ref_fasta
+    File ref_fasta_index
+    File interval1
+    File interval2
+    File interval3
+    File interval4
+    File interval5
+    File interval6
+    File interval7
+    File interval8
+    File interval9
+    File interval10
     Boolean make_gvcf = true
     Boolean make_bamout = false
     String gatk_docker = "broadinstitute/gatk:4.1.7.0"
@@ -39,21 +53,6 @@ workflow HaplotypeCallerGvcf_GATK4 {
     String gitc_docker = "broadinstitute/genomes-in-the-cloud:2.3.1-1500064817"
     String samtools_path = "samtools"
   }
-
-  File input_bam
-  File ref_dict
-  File ref_fasta
-  File ref_fasta_index
-  File interval1
-  File interval2
-  File interval3
-  File interval4
-  File interval5
-  File interval6
-  File interval7
-  File interval8
-  File interval9
-  File interval10
 
   #Array[File] scattered_calling_intervals = read_lines(scattered_calling_intervals_list)
   Array[File] scattered_calling_intervals = [interval1, interval2, interval3, interval4, interval5, interval6, interval7, interval8, interval9, interval10]
