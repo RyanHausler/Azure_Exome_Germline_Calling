@@ -1,0 +1,18 @@
+{
+  "main.input_bam": "/daccoa8a17225697f3c/anuragupload/UPENN-PMBB_10000114_14f7f791-c70d-4ef7-8b6f-19c133694bae.aligned.cram",
+
+  "main.ref_dict": "/daccoa8a17225697f3c/inputs/broad-references/hg38/v0/Homo_sapiens_assembly38.dict",
+  "main.ref_fasta": "/daccoa8a17225697f3c/inputs/broad-references/hg38/v0/Homo_sapiens_assembly38.fasta",
+  "main.ref_fasta_index": "/daccoa8a17225697f3c/inputs/broad-references/hg38/v0/Homo_sapiens_assembly38.fasta.fai",
+
+  "main.interval1": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0000-scattered.interval_list",
+  "main.interval2": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0001-scattered.interval_list",
+  "main.interval3": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0002-scattered.interval_list",
+  "main.interval4": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0003-scattered.interval_list",
+  "main.interval5": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0004-scattered.interval_list",
+  "main.interval6": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0005-scattered.interval_list",
+  "main.interval7": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0006-scattered.interval_list",
+  "main.interval8": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0007-scattered.interval_list",
+  "main.interval9": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0008-scattered.interval_list",
+  "main.interval10": "/daccoa8a17225697f3c/inputs/Intervals/Scatter_Intervals/0009-scattered.interval_list"
+}
