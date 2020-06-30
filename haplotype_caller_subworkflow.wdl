@@ -141,8 +141,10 @@ task CramToBamTask {
   command {
     set -e
     set -o pipefail
-
-    ~{samtools_path} view -h -T ~{ref_fasta} ~{input_cram} |
+    ~{samtools_path} view -H ~{input_cram} | \
+    sed -e '/^@SQ/s/SN\:/SN\:chr/' -e '/^[^@]/s/\t/\tchr/2' > ~{sample_name}.fixed_header.txt
+    ~{samtools_path} reheader ~{sample_name}.fixed_header.txt ~{input_cram} > ~{sample_name}.fixed.cram
+    ~{samtools_path} view -h -T ~{ref_fasta} ~{sample_name}.fixed.cram |
     ~{samtools_path} view -b -o ~{sample_name}.bam -
     ~{samtools_path} index -b ~{sample_name}.bam
     mv ~{sample_name}.bam.bai ~{sample_name}.bai
