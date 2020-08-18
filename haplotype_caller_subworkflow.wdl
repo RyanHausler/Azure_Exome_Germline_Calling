@@ -32,7 +32,7 @@ version 1.0
 workflow HaplotypeCallerGvcf_GATK4 {
 
   input {
-    File input_bam
+    File input_cram
     File ref_dict
     File ref_fasta
     File ref_fasta_index
@@ -56,12 +56,13 @@ workflow HaplotypeCallerGvcf_GATK4 {
 
   #Array[File] scattered_calling_intervals = read_lines(scattered_calling_intervals_list)
   Array[File] scattered_calling_intervals = [interval1, interval2, interval3, interval4, interval5, interval6, interval7, interval8, interval9, interval10]
-  #is the input a cram file?
-  Boolean is_cram = sub(basename(input_bam), ".*\\.", "") == "cram"
-  String sample_basename = if is_cram then  basename(input_bam, ".cram") else basename(input_bam, ".bam")
+  
+  # Get basenames
+  String sample_basename = basename(cram_file[0], ".cram")
   String vcf_basename = sample_basename
   String output_suffix = if make_gvcf then ".g.vcf.gz" else ".vcf.gz"
   String output_filename = vcf_basename + output_suffix
+  
   # We need disk to localize the sharded input and output due to the scatter for HaplotypeCaller.
   # If we take the number we are scattering by and reduce by 20 we will have enough disk space
   # to account for the fact that the data is quite uneven across the shards.
@@ -70,7 +71,7 @@ workflow HaplotypeCallerGvcf_GATK4 {
 
   call CramToBamTask {
     input:
-      input_cram = input_bam,
+      input_cram = input_cram,
       sample_name = sample_basename,
       ref_dict = ref_dict,
       ref_fasta = ref_fasta,
@@ -151,10 +152,11 @@ task CramToBamTask {
   }
   runtime {
     docker: docker
-    memory: select_first([machine_mem_gb, 15]) + " GB"
-    disks: select_first([disk_space_gb, disk_size]) + " GB"
+    memory: "4 GB" # Changed to static value for testing
+    disk: disk_size + " GB" # Changed to static value for testing
+    cpu: 8
     preemptible: true
-    maxRetries: select_first([preemptible_attempts, 3])
+    maxRetries: 3
  }
   output {
     File output_bam = "~{sample_name}.bam"
@@ -230,10 +232,11 @@ task HaplotypeCaller {
   }
   runtime {
     docker: docker
-    memory: machine_mem_gb + " GB"
-    disks: select_first([disk_space_gb, disk_size]) + " GB"
+    memory: "7 GB" # Changed to static value for testing
+    disk: disk_size + " GB" # Changed to static value for testing
+    cpu: 2
     preemptible: true
-    maxRetries: select_first([preemptible_attempts, 3])
+    maxRetries: 3
   }
   output {
     File output_vcf = "~{output_filename}"
@@ -271,10 +274,11 @@ task MergeGVCFs {
   }
   runtime {
     docker: docker
-    memory: machine_mem_gb + " GB"
-    disks: select_first([disk_space_gb, 100]) + " GB"
+    memory: "2 GB" # Changed to static value for testing
+    disk: disk_size + " GB" # Changed to static value for testing
+    cpu: 2
     preemptible: true
-    maxRetries: select_first([preemptible_attempts, 3])
+    maxRetries: 3
   }
   output {
     File output_vcf = "~{output_filename}"
