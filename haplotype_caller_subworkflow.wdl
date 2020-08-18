@@ -275,7 +275,7 @@ task MergeGVCFs {
   runtime {
     docker: docker
     memory: "2 GB" # Changed to static value for testing
-    disk: disk_size + " GB" # Changed to static value for testing
+    disk: "50 GB" # Changed to static value for testing
     cpu: 2
     preemptible: true
     maxRetries: 3
