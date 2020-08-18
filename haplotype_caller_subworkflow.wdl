@@ -58,7 +58,7 @@ workflow HaplotypeCallerGvcf_GATK4 {
   Array[File] scattered_calling_intervals = [interval1, interval2, interval3, interval4, interval5, interval6, interval7, interval8, interval9, interval10]
   
   # Get basenames
-  String sample_basename = basename(cram_file[0], ".cram")
+  String sample_basename = basename(input_cram, ".cram")
   String vcf_basename = sample_basename
   String output_suffix = if make_gvcf then ".g.vcf.gz" else ".vcf.gz"
   String output_filename = vcf_basename + output_suffix
