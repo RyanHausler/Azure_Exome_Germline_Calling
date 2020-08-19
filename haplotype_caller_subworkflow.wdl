@@ -154,7 +154,7 @@ task CramToBamTask {
     docker: docker
     memory: "4 GB" # Changed to static value for testing
     disk: disk_size + " GB" # Changed to static value for testing
-    cpu: 8
+    cpu: 2
     preemptible: true
     maxRetries: 3
  }
