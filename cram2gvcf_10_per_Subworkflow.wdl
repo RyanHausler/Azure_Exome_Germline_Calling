@@ -11,6 +11,21 @@ version 1.0
 # WORKFLOW DEFINITION
 workflow Cram2GVCF {
   input {
+    File input_cram0
+    File input_cram1
+    File input_cram2
+    File input_cram3
+    File input_cram4
+    File input_cram5
+    File input_cram6
+    File input_cram7
+    File input_cram8
+    File input_cram9
+    File ref_dict
+    File ref_fasta
+    File ref_fasta_index
+    File intervals
+    
     Boolean make_gvcf = true
     Boolean make_bamout = false
     String gatk_docker = "broadinstitute/gatk:4.1.7.0"
@@ -18,21 +33,6 @@ workflow Cram2GVCF {
     String gitc_docker = "broadinstitute/genomes-in-the-cloud:2.3.1-1500064817"
     String samtools_path = "samtools"
   }
-
-  File input_cram0
-  File input_cram1
-  File input_cram2
-  File input_cram3
-  File input_cram4
-  File input_cram5
-  File input_cram6
-  File input_cram7
-  File input_cram8
-  File input_cram9
-  File ref_dict
-  File ref_fasta
-  File ref_fasta_index
-  File intervals
 
   # Get basenames
   String sample_basename0 = basename(input_cram0, ".cram")
