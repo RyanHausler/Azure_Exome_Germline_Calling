@@ -182,7 +182,7 @@ task CramToBamTask {
   Float input_cram_size = size(input_cram0, "GB") + size(input_cram1, "GB") + size(input_cram2, "GB") + size(input_cram3, "GB") + size(input_cram4, "GB") + size(input_cram5, "GB") + size(input_cram7, "GB") + size(input_cram7, "GB") + size(input_cram8, "GB") + size(input_cram9, "GB")
   Float output_bam_size = size(input_cram0, "GB") / 0.60 + size(input_cram1, "GB") / 0.60 + size(input_cram2, "GB") / 0.60 + size(input_cram3, "GB") / 0.60 + size(input_cram4, "GB") / 0.60 + size(input_cram5, "GB") / 0.60 + size(input_cram6, "GB") / 0.60 + size(input_cram7, "GB") / 0.60 + size(input_cram8, "GB") / 0.60 + size(input_cram9, "GB") / 0.60
   Float ref_size = size(ref_fasta, "GB") + size(ref_fasta_index, "GB") + size(ref_dict, "GB")
-  Int disk_size = ceil(input_cram_size + output_bam_size + ref_size) + 20
+  Int disk_size = ceil(input_cram_size + output_bam_size + ref_size) + 30
 
   command {
     set -e
@@ -355,7 +355,7 @@ task HaplotypeCaller {
   # Get Disk Size
   Float input_bam_size = size(input_bam0, "GB") + size(input_bam1, "GB") + size(input_bam2, "GB") + size(input_bam3, "GB") + size(input_bam4, "GB") + size(input_bam5, "GB") + size(input_bam7, "GB") + size(input_bam7, "GB") + size(input_bam8, "GB") + size(input_bam9, "GB")
   Float ref_size = size(ref_fasta, "GB") + size(ref_fasta_index, "GB") + size(ref_dict, "GB")
-  Int disk_size = ceil((input_bam_size + 30) + ref_size) + 20
+  Int disk_size = ceil((input_bam_size + 30) + ref_size) + 30
 
   command {
     set -e
